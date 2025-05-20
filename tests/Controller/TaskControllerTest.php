@@ -1,5 +1,4 @@
 <?php
-// tests/Controller/TaskControllerTest.php
 
 namespace App\Tests\Controller;
 
@@ -42,7 +41,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testGetTaskById(): void
     {
-        // Create a task first
         $client = static::createClient();
         $client->request('POST', '/api/tasks', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
             'title' => 'Task for GET test',
@@ -53,7 +51,6 @@ class TaskControllerTest extends WebTestCase
         $responseData = json_decode($client->getResponse()->getContent(), true);
         $taskId = $responseData['data']['id'];
 
-        // Now test getting the task by ID
         $client->request('GET', '/api/tasks/' . $taskId);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -67,7 +64,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testUpdateTask(): void
     {
-        // Create a task first
         $client = static::createClient();
         $client->request('POST', '/api/tasks', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
             'title' => 'Task to update',
@@ -78,7 +74,6 @@ class TaskControllerTest extends WebTestCase
         $responseData = json_decode($client->getResponse()->getContent(), true);
         $taskId = $responseData['data']['id'];
 
-        // Now update the task
         $client->request('PUT', '/api/tasks/' . $taskId, [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
             'title' => 'Updated Task Title',
             'status' => TaskStatus::IN_PROGRESS,
@@ -96,7 +91,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testDeleteTask(): void
     {
-        // Create a task first
         $client = static::createClient();
         $client->request('POST', '/api/tasks', [], [], ['CONTENT_TYPE' => 'application/json'], json_encode([
             'title' => 'Task to delete',
@@ -107,7 +101,6 @@ class TaskControllerTest extends WebTestCase
         $responseData = json_decode($client->getResponse()->getContent(), true);
         $taskId = $responseData['data']['id'];
 
-        // Now delete the task
         $client->request('DELETE', '/api/tasks/' . $taskId);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
@@ -117,7 +110,6 @@ class TaskControllerTest extends WebTestCase
         $this->assertArrayHasKey('status', $responseData);
         $this->assertEquals('success', $responseData['status']);
 
-        // Try to get the deleted task
         $client->request('GET', '/api/tasks/' . $taskId);
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
