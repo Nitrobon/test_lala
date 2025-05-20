@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "33b01bca-e3ef-4c15-a0eb-5b515fb88ef4",
+		"name": "Task API",
+		"description": "Коллекция для работы с TaskController",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19305822"
+	},
+	"item": [
+		{
+			"name": "Get All Tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tasks?page=1&limit=10&status=todo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "todo"
+						},
+						{
+							"key": "status",
+							"value": "in_progress",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "done",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tasks/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"New Task\",\n  \"description\": \"Task details\",\n  \"status\": \"todo\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/tasks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated details\",\n  \"status\": \"done\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/tasks/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tasks/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api"
+		}
+	]
+}
