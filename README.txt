@@ -3,13 +3,13 @@
 1. Соберите и запустите контейнеры:
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 2. Войдите в контейнер PHP для установки зависимостей:
 
 ```bash
-docker-compose exec app bash
+docker compose exec app bash
 ```
 
 3. Внутри контейнера выполните:
@@ -41,11 +41,14 @@ php bin/console doctrine:fixtures:load
 Для остановки контейнеров выполните:
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 Для остановки контейнеров и удаления томов (данные базы данных будут потеряны):
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
+
+
+Коллекция API для Postman лежит в файле Task API.postman_collection.json
